@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scrolling Text Effect</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      height: 200vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: black;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    .container {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .text-container {
+      position: relative;
+      display: inline-block;
+    }
+
+    #strike-through {
+      text-decoration: none;
+      position: relative;
+      transition: text-decoration 0.5s, color 0.5s;
+    }
+
+    #replacement {
+      display: none;
+      color: yellow;
+      transition: color 0.5s;
+    }
+
+    .strikethrough #strike-through {
+      text-decoration: line-through;
+    }
+
+    .strikethrough #replacement {
+      display: inline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="text-container">
+      <p id="text">Digital Solutions for forward-thinking <span id="strike-through">companies</span><span id="replacement">People</span></p>
+    </div>
+  </div>
+  <script>
+    document.addEventListener('scroll', () => {
+      const textContainer = document.querySelector('.text-container');
+      const triggerPoint = window.innerHeight / 2;
+
+      if (window.scrollY >= triggerPoint) {
+        textContainer.classList.add('strikethrough');
+      } else {
+        textContainer.classList.remove('strikethrough');
+      }
+    });
+  </script>
+</body>
+</html>
